@@ -1,7 +1,7 @@
 var path    = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var jQuery = require("jquery");
+var jQuery=require("jquery");
 var bootstrap=require("bootstrap");
 
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
         }
 
 
-}
+
 
     ]
   },
