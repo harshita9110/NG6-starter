@@ -1,16 +1,30 @@
 var path    = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var jQuery = require("jquery");
+var bootstrap=require("bootstrap");
 
 module.exports = {
   devtool: 'sourcemap',
   entry: {},
   module: {
     loaders: [
-       { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
-       { test: /\.html$/, loader: 'raw' },
-       { test: /\.styl$/, loader: 'style!css!stylus' },
-       { test: /\.css$/, loader: 'style!css' }
+      { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+     { test: /\.html$/, loader: 'raw-loader' },
+     { test: /\.less$/, loader: "style!css!less"},
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+			{ test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
+			{ test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+			{ test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      {
+            test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
+            loader: "imports?this=>window"
+        }
+
+
+}
+
     ]
   },
   plugins: [
@@ -30,6 +44,10 @@ module.exports = {
       minChunks: function (module, count) {
         return module.resource && module.resource.indexOf(path.resolve(__dirname, 'client')) === -1;
       }
-    })
+    }),
+    new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
   ]
 };

@@ -5,7 +5,6 @@ import homeComponent from './home.component';
 let homeModule = angular.module('home', [
   uiRouter
 ])
-
 .config(($stateProvider, $urlRouterProvider) => {
   "ngInject";
 
@@ -15,7 +14,14 @@ let homeModule = angular.module('home', [
     .state('home', {
       url: '/',
       template: '<home></home>'
-    });
+    })
+
+
+   // nested list with just some random string data
+   .state('home.paragraph', {
+       url: '/paragraph',
+       template: 'I could sure use a drink right now.'
+   });
 })
 
 .component('home', homeComponent);

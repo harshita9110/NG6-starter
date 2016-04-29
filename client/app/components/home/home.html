@@ -1,9 +1,8 @@
 <navbar></navbar>
-<header>
-  <hero></hero>
-</header>
-<main>
-  <div>
-    <h1>Found in {{ vm.name }}.html</h1>
-  </div>
-</main>
+<div class="jumbotron text-center">
+    <h1>{{vm.name}}</h1>
+    <p>This page demonstrates <span class="text-danger">nested</span> views.</p>
+    <a ui-sref="partialhome" class="btn btn-primary">List</a>
+    <a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
+</div>
+<div ui-view></div>
