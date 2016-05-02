@@ -1,8 +1,9 @@
 var path    = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var jQuery=require("jquery");
-var bootstrap=require("bootstrap");
+
+
+
 
 module.exports = {
   devtool: 'sourcemap',
@@ -20,7 +21,10 @@ module.exports = {
       {
             test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
             loader: "imports?this=>window"
-        }
+        },
+         { test: /\.(png|jpg)$/, loader: 'file-loader' },
+         {test: /src.*\.js$/, loaders: ['ng-annotate', 'babel-loader']}
+
 
 
 

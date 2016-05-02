@@ -1,8 +1,27 @@
-<div>
-  <h1>{{ vm.name }}</h1>
-  <!-- partial-home-list.html -->
+<navbar></navbar>
+<div class="container">
+  <form>
+    <select ng-model="selectedCountry" ng-options="country for country in vm.countries"></select>
+      <pre>Selected date is: <em>{{vm.dt | date:'fullDate' }}</em></pre>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="'M!/d!/yyyy" ng-model="vm.$parent.dt" is-open="vm.popup1.opened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="vm.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
 
-<ul>
-    <li ng-repeat="dog in vm.dogs">{{ dog }}</li>
-</ul>
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="'M!/d!/yyyy" ng-model="dt2" is-open="vm.popup2.opened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="vm.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+    </div>
+
+  </form>
 </div>
