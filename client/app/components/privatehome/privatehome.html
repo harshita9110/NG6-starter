@@ -1,0 +1,10 @@
+<navbar></navbar>
+<div>
+  <h1>{{ vm.name }}</h1>
+</div>
+<div class="col-md-8">
+  <li ng-repeat="video in vm.playlist">
+    {{video.snippet.title}}
+    <img src='{{video.snippet.thumbnails.default.url}}'/>
+  </li>
+</div>

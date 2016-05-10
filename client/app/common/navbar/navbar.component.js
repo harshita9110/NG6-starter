@@ -4,7 +4,9 @@ import './navbar.less';
 
 let navbarComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    headername:'@'
+  },
   template,
   controller,
   controllerAs: 'vm'

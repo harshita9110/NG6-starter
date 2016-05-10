@@ -1,16 +1,16 @@
-import CreateBucketListModule from './createBucketList'
-import CreateBucketListController from './createBucketList.controller';
-import CreateBucketListComponent from './createBucketList.component';
-import CreateBucketListTemplate from './createBucketList.html';
+import SoundcloudcomponentModule from './soundcloudcomponent'
+import SoundcloudcomponentController from './soundcloudcomponent.controller';
+import SoundcloudcomponentComponent from './soundcloudcomponent.component';
+import SoundcloudcomponentTemplate from './soundcloudcomponent.html';
 
-describe('CreateBucketList', () => {
+describe('Soundcloudcomponent', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(CreateBucketListModule.name));
+  beforeEach(window.module(SoundcloudcomponentModule.name));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new CreateBucketListController();
+      return new SoundcloudcomponentController();
     };
   }));
 
@@ -30,16 +30,16 @@ describe('CreateBucketList', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(CreateBucketListTemplate).to.match(/{{\s?vm\.name\s?}}/g);
+      expect(SoundcloudcomponentTemplate).to.match(/{{\s?vm\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = CreateBucketListComponent;
+      let component = SoundcloudcomponentComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(CreateBucketListTemplate);
+        expect(component.template).to.equal(SoundcloudcomponentTemplate);
       });
 
       it('uses `controllerAs` syntax', () => {
@@ -47,7 +47,7 @@ describe('CreateBucketList', () => {
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(CreateBucketListController);
+        expect(component.controller).to.equal(SoundcloudcomponentController);
       });
   });
 });

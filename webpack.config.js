@@ -1,6 +1,10 @@
 var path    = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var fs=require('fs');
+var pixi = require('pixi');
+var google = require('googleapis');
+var plus = google.plus('v1');
 
 
 
@@ -23,7 +27,14 @@ module.exports = {
             loader: "imports?this=>window"
         },
          { test: /\.(png|jpg)$/, loader: 'file-loader' },
-         {test: /src.*\.js$/, loaders: ['ng-annotate', 'babel-loader']}
+         {test: /src.*\.js$/, loaders: ['ng-annotate', 'babel-loader']},
+
+         {
+   				test: /\.json$/,
+   				include: path.join(__dirname, 'node_modules', 'pixi.js'),
+   				loader: 'json',
+   			},
+
 
 
 
@@ -31,6 +42,9 @@ module.exports = {
 
     ]
   },
+  node: {
+  fs: "empty"
+},
   plugins: [
     // Injects bundles in your index.html instead of wiring all manually.
     // It also adds hash to all injected assets so we don't have problems
@@ -53,5 +67,11 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery"
         })
-  ]
+  ],
+  postLoaders: [
+      {
+        include: path.resolve(__dirname, 'node_modules/pixi.js'),
+        loader: 'transform?brfs'
+      }
+    ]
 };

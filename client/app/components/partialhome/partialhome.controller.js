@@ -3,19 +3,9 @@ class PartialhomeController {
     "ngInject";
     this.name = 'partialhome';
     this.manageBucketListService=manageBucketListService;
-    this.getAllCountries();
-    this.inlineOptions = {
+  //  this.getAllCountries();
+    this.playlist='';
 
-      minDate: new Date(),
-      showWeeks: true
-    };
-
-    this.dateOptions = {
-      formatYear: 'yy',
-      maxDate: new Date(2020, 5, 22),
-      minDate: new Date(),
-      startingDay: 1
-    };
     this.popup1 = {
       opened: false
     };
@@ -24,23 +14,39 @@ class PartialhomeController {
       opened: false
     };
     this.altInputFormats = ['M!/d!/yyyy'];
+    this.parent = {dt:''};
+    this.showWeather();
 
-
+  }
+  change(data){
+    console.log(data);
   }
   getAllCountries(){
     this.countries=this.manageBucketListService.getAllCountries();
   }
-  open1(){
-    this.popup1.opened = true;
+  open1($event){
+    $event.preventDefault();
+           $event.stopPropagation();
+    this.popup1.opened = !this.popup1.opened;
   }
-  open2() {
-    this.popup2.opened = true;
+  open2($event) {
+    $event.preventDefault();
+           $event.stopPropagation();
+    this.popup2.opened = !this.popup2.opened;
   };
-  setDate(year, month, day) {
-    this.dt = new Date(year, month, day);
-    this.dt2=new Date(year, month, day);
-  };
-  
+  destinationPicked(){
+    var data={
+      country:this.selectedCountry,
+      startDate:this.dt,
+      endDate:this.dt2,
+      notes:this.tripNotes
+    }
+    this.manageBucketListService.saveTripInfo(data);
+  }
+  showWeather(){
+    var promise=this.manageBucketListService.getData('92780')
+    .then(data=>{this.playlist=data;console.log(data);});
+  }
 
 
 }

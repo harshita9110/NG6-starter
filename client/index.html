@@ -12,7 +12,36 @@
     <base href="/">
   </head>
   <body ng-app="app" ng-strict-di ng-cloak>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '821427357989570',
+          xfbml      : true,
+          status: true,
+          channelUrl: 'app/channel.html',
+      cookie: true,
+          version    : 'v2.6'
+        });
+      };
 
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+      <script>
+      SC.initialize({
+        client_id: 'e351f69c5dcbd4b2068c50b36064386d',
+        redirect_uri: 'http://localhost:3000/soundcloudcomponent',
+      });
+
+
+
+      </script>
     <app>
       Loading...
     </app>
@@ -26,5 +55,8 @@
       ga('create', 'UA-71073175-2', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
   </body>
 </html>

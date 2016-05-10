@@ -1,27 +1,45 @@
 <navbar></navbar>
-<div class="container">
+<div class="container main">
   <form>
-    <select ng-model="selectedCountry" ng-options="country for country in vm.countries"></select>
-      <pre>Selected date is: <em>{{vm.dt | date:'fullDate' }}</em></pre>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
+        <span class="label">Pick a country:</span>
+        <div class="styled-select">
+        <select ng-model="vm.selectedCountry" class="selectbox" ng-options="country for country in vm.countries"></select>
+      </div>
+  </div>
+  </div>
+    <div class="row">
+      <div class="col-md-4">
+          <span class="label">Start Date:</span>
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="'M!/d!/yyyy" ng-model="vm.$parent.dt" is-open="vm.popup1.opened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats" />
+          <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="vm.dt" is-open="vm.popup1.opened" />
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="vm.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="vm.open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4">
+          <span class="label">End Date</span>
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="'M!/d!/yyyy" ng-model="dt2" is-open="vm.popup2.opened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats" />
+            <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" ng-model="vm.dt2" is-open="vm.popup2.opened" />
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="vm.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button type="button" class="btn btn-default" ng-click="vm.open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
         </p>
+      </div>
+      <div class="col-md-8">
+        <span class="label">Trip Notes</span>
+        <textarea class="notes" ng-model="vm.tripNotes"></textarea>
       </div>
     </div>
-
+<button  class="btn btn-danger" ng-click="vm.destinationPicked()"></button>
   </form>
+  <div class="col-md-8">
+    <li ng-repeat="video in vm.playlist">
+      {{video.snippet.title}}
+      <img src='{{video.snippet.thumbnails.default.url}}'/>
+    </li>
+  </div>
 </div>

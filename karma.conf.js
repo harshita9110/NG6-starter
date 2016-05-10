@@ -5,7 +5,7 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai','sinon'],
 
     // list of files/patterns to load in the browser
     files: [{ pattern: 'spec.bundle.js', watched: false }],
@@ -19,7 +19,8 @@ module.exports = function (config) {
       require("karma-mocha"),
       require("karma-mocha-reporter"),
       require("karma-sourcemap-loader"),
-      require("karma-webpack")
+      require("karma-webpack"),
+      require("karma-sinon")
     ],
 
     // preprocess matching files before serving them to the browser
@@ -32,8 +33,20 @@ module.exports = function (config) {
         loaders: [
           { test: /\.js/, exclude: [/app\/lib/, /node_modules/], loader: 'babel' },
           { test: /\.html/, loader: 'raw' },
-          { test: /\.styl$/, loader: 'style!css!stylus' },
-          { test: /\.css$/, loader: 'style!css' }
+         { test: /\.less$/, loader: "style!css!less"},
+          { test: /\.css$/, loader: 'style!css' },
+          { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+          { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
+          { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+          { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+          {
+                test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
+                loader: "imports?this=>window"
+            },
+             { test: /\.(png|jpg)$/, loader: 'file-loader' },
+             {test: /src.*\.js$/, loaders: ['ng-annotate', 'babel-loader']}
+
+
         ]
       }
     },

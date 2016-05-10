@@ -4,13 +4,22 @@ import PartialhomeComponent from './partialhome.component';
 import PartialhomeTemplate from './partialhome.html';
 
 describe('Partialhome', () => {
-  let $rootScope, makeController;
+  let $rootScope, makeController,manageBucketListService,$q;
 
   beforeEach(window.module(PartialhomeModule.name));
-  beforeEach(inject((_$rootScope_) => {
+  beforeEach(inject((_$rootScope_,_$q_) => {
     $rootScope = _$rootScope_;
+    $q=_$q_;
+    manageBucketListService = {
+          getData: (zip) => {
+            var deferred=$q.defer();
+            deferred.resolve('success');
+            return deferred.promise;
+          }
+
+        };
     makeController = () => {
-      return new PartialhomeController();
+      return new PartialhomeController(manageBucketListService);
     };
   }));
 
@@ -26,13 +35,7 @@ describe('Partialhome', () => {
     });
   });
 
-  describe('Template', () => {
-    // template specs
-    // tip: use regex to ensure correct bindings are used e.g., {{  }}
-    it('has name in template [REMOVE]', () => {
-      expect(PartialhomeTemplate).to.match(/{{\s?vm\.name\s?}}/g);
-    });
-  });
+
 
   describe('Component', () => {
       // component/directive specs

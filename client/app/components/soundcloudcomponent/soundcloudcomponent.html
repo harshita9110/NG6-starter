@@ -1,0 +1,10 @@
+<div>
+<input type="text" ng-model="vm.searchParameter"/>
+<button ng-click="vm.searchTracks()" class="btn btn-danger">Search</button>
+<li ng-repeat="track in vm.trackList">
+  {{track.title}}
+  <button ng-click="vm.play(track.uri)" class="btn btn-danger">Play</button>
+
+</li>
+<div ng-bind-html="vm.player_html"></div>
+</div>
